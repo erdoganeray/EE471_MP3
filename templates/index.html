@@ -1,0 +1,70 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Dream Canvas</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600&family=Space+Grotesk:wght@700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+<body>
+  <main class="app">
+    <!-- 1. title + icon -->
+    <header class="header">
+      <div>
+        <h1 class="title">Dream Canvas</h1>
+        <p class="subtitle" id="status">Chat with AI, then paint your idea</p>
+      </div>
+      <div class="logo" aria-hidden="true">
+        <svg viewBox="0 0 24 24"><path d="M9.94 14.06 4 21"/><path d="m12 3 1.9 5.8a2 2 0 0 0 1.3 1.3L21 12l-5.8 1.9a2 2 0 0 0-1.3 1.3L12 21l-1.9-5.8a2 2 0 0 0-1.3-1.3L3 12l5.8-1.9a2 2 0 0 0 1.3-1.3Z"/></svg>
+      </div>
+    </header>
+
+    <!-- 2. image output box + paint button -->
+    <section class="image-box" id="imageBox">
+      <div class="empty" id="emptyState">
+        <svg viewBox="0 0 24 24"><rect width="18" height="18" x="3" y="3" rx="2"/><circle cx="9" cy="9" r="2"/><path d="m21 15-3.086-3.086a2 2 0 0 0-2.828 0L6 21"/></svg>
+        <span>Your image will appear here</span>
+      </div>
+      <img id="image" alt="Generated image" hidden>
+      <div class="loading" id="imageLoading" hidden><span class="spinner"></span><span>Painting…</span></div>
+      <button class="round gradient paint" id="paintBtn" title="Generate image" aria-label="Generate image">
+        <svg viewBox="0 0 24 24"><path d="m9.06 11.9 8.07-8.06a2.85 2.85 0 1 1 4.03 4.03l-8.06 8.08"/><path d="M7.07 14.94c-1.66 0-3 1.35-3 3.02 0 1.33-2.5 1.52-2 2.02 1.08 1.1 2.49 2.02 4 2.02 2.2 0 4-1.8 4-4.04a3.01 3.01 0 0 0-3-3.02z"/></svg>
+      </button>
+    </section>
+
+    <!-- 3. prompt input box -->
+    <section class="block">
+      <label class="label" for="prompt">Image prompt</label>
+      <input class="field" id="prompt" placeholder="Describe the image, then press paint…" autocomplete="off">
+    </section>
+
+    <!-- 4. chat history -->
+    <section class="block">
+      <span class="label">Chat</span>
+      <div class="history" id="history" aria-live="polite">
+        <div class="row assistant">
+          <div class="bubble assistant">
+            <span class="sender">Assistant</span>
+            <p>Hi! Ask me for an image idea, or press the mic and talk to me.</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- 5. mic button, message box, send button -->
+    <footer class="composer">
+      <button class="round ghost" id="micBtn" title="Speak" aria-label="Speak">
+        <svg viewBox="0 0 24 24"><path d="M12 2a3 3 0 0 0-3 3v7a3 3 0 0 0 6 0V5a3 3 0 0 0-3-3Z"/><path d="M19 10v2a7 7 0 0 1-14 0v-2"/><line x1="12" x2="12" y1="19" y2="22"/></svg>
+      </button>
+      <input class="field" id="message" placeholder="Type or press the mic…" autocomplete="off">
+      <button class="round gradient" id="sendBtn" title="Send" aria-label="Send">
+        <svg viewBox="0 0 24 24"><path d="m22 2-7 20-4-9-9-4Z"/><path d="M22 2 11 13"/></svg>
+      </button>
+    </footer>
+  </main>
+  <script src="{{ url_for('static', filename='app.js') }}"></script>
+</body>
+</html>

@@ -1,0 +1,11 @@
+__pycache__/
+*.pyc
+.venv/
+venv/
+.env
+.DS_Store
+.claude/
+*.log
+# large screen recordings: upload separately and link in README
+recordings/*.avi
+recordings/*.mp4
